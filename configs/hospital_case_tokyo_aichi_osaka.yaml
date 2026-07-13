@@ -1,0 +1,78 @@
+version: 1
+case:
+  id: hospital_case_tokyo_aichi_osaka
+  domain: hospital_site_strategy
+  status: scaffold_only
+  objective: "Compare candidate regions for a future hospital site strategy."
+  study_area_id: tokyo_aichi_osaka
+  study_area_config: "configs/study_area_tokyo_aichi_osaka.yaml"
+  candidate_regions:
+    - 東京都
+    - 愛知県
+    - 大阪府
+  target_prefectures:
+    - 東京都
+    - 愛知県
+    - 大阪府
+  accepted_prefecture_aliases:
+    東京都:
+      - Tokyo
+      - Tokyo-to
+      - 東京都
+    愛知県:
+      - Aichi
+      - Aichi-ken
+      - 愛知県
+    大阪府:
+      - Osaka
+      - Osaka-fu
+      - 大阪府
+  scope_policy:
+    target_prefecture_rows: in_scope
+    other_prefecture_rows: outside_scope
+    missing_or_unknown_prefecture_rows: scope_unknown
+    unknown_prefecture_aliases:
+      - unknown
+      - Unknown
+      - n/a
+      - N/A
+      - 不明
+      - 未確認
+    non_target_prefectures_are_errors: false
+    missing_municipality_in_target_scope_is_issue: true
+    invent_municipalities: false
+
+required_real_world_inputs:
+  demand:
+    - id: population_structure
+      description: "Population by age band and municipality from a real source."
+      expected_location: ".data/manual"
+    - id: population_projection
+      description: "Future population projection from a real source."
+      expected_location: ".data/manual"
+    - id: existing_medical_supply
+      description: "Existing hospital or clinic supply indicators from real sources."
+      expected_location: ".data/manual"
+
+  land_and_access:
+    - id: candidate_land_inventory
+      description: "Candidate land parcels or site options from real sources."
+      expected_location: ".data/manual"
+    - id: transport_access
+      description: "Travel time, route, or accessibility evidence from real sources."
+      expected_location: ".data/api_raw"
+
+  finance:
+    - id: capital_cost_assumptions
+      description: "Documented real-world or explicitly approved scenario assumptions."
+      expected_location: ".data/manual"
+    - id: operating_assumptions
+      description: "Documented real-world or explicitly approved scenario assumptions."
+      expected_location: ".data/manual"
+
+not_yet_implemented:
+  - hospital_finance_model
+  - geospatial_scoring
+  - api_clients
+  - proposal_generation
+  - reviewer_logic

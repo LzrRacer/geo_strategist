@@ -1,0 +1,27 @@
+version: 1
+phase: deterministic_source_normalization
+policy:
+  no_mock_numeric_datasets: true
+  no_fake_api_outputs: true
+  no_candidate_generation: true
+  no_demand_scores: true
+  no_cashflow_projections: true
+  no_llm_agents: true
+  numeric_values_must_come_from_source_cells: true
+  every_record_requires_provenance: true
+  ambiguous_mappings_are_unresolved: true
+
+paths:
+  manual_inputs: ".data/manual"
+  normalized_interim_root: ".data/interim/normalized"
+  normalization_cache: ".cache/normalization"
+  hospital_records: ".data/interim/normalized/hospital_workbook/normalized_records.jsonl"
+  population_records: ".data/interim/normalized/population/normalized_records.jsonl"
+  hospital_manifest: ".cache/normalization/hospital_workbook_manifest.json"
+  population_manifest: ".cache/normalization/population_manifest.json"
+
+validation:
+  allow_absent_outputs_by_default: true
+  fail_if_numeric_record_lacks_provenance: true
+  fail_if_record_lacks_source_file_hash: true
+  fail_if_unresolved_mapping_produced_records: true

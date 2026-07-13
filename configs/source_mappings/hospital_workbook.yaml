@@ -1,0 +1,35 @@
+version: 1
+source:
+  id: hospital_workbook
+  canonical_path: ".data/manual/hospital_cf_workbook/hospital_rough_cf_payback_model_tokyo_aichi_osaka_beds_updated.xlsx"
+  legacy_fallback_path: "data/manual/hospital_cf_workbook/hospital_rough_cf_payback_model_tokyo_aichi_osaka_beds_updated.xlsx"
+  inspection_profile: ".cache/inspection/hospital_workbook_profile.json"
+
+outputs:
+  normalized_records: ".data/interim/normalized/hospital_workbook/normalized_records.jsonl"
+  source_tables: ".data/interim/normalized/hospital_workbook/source_tables.json"
+  mapping_report_json: ".cache/normalization/hospital_workbook_mapping_report.json"
+  mapping_report_markdown: ".cache/normalization/hospital_workbook_mapping_report.md"
+  manifest: ".cache/normalization/hospital_workbook_manifest.json"
+
+extraction_policy:
+  status_for_unverified_mappings: inferred
+  unresolved_status: unresolved
+  max_header_scan_rows: 30
+  min_non_empty_header_cells: 2
+  min_data_rows_after_header: 1
+  min_confidence_for_extraction: 0.6
+  skip_blank_cells: true
+  treat_formula_cells_as_text: true
+  do_not_interpret_business_meaning: true
+  do_not_generate_cashflow_projections: true
+
+mapping_slots:
+  - sheet_name: null
+    header_row: null
+    value_columns: []
+    label_columns: []
+    year_columns: []
+    age_columns: []
+    status: inferred
+    notes: "Header rows are detected deterministically from workbook structure."

@@ -1,0 +1,41 @@
+version: 1
+case_template:
+  id: franchise_case_template
+  domain: franchise_site_strategy
+  status: scaffold_only
+  objective: "Evaluate candidate sites for a franchise expansion decision."
+
+required_real_world_inputs:
+  demand:
+    - id: target_customer_definition
+      description: "Documented customer segment definition."
+      expected_location: ".data/manual"
+    - id: local_demand_indicators
+      description: "Real-world demand indicators relevant to the franchise."
+      expected_location: ".data/manual"
+
+  competition:
+    - id: competitor_locations
+      description: "Real-world competitor or substitute locations."
+      expected_location: ".data/manual"
+
+  site_economics:
+    - id: rent_or_land_cost
+      description: "Real-world rent, land, or lease evidence."
+      expected_location: ".data/manual"
+    - id: operating_assumptions
+      description: "Documented real-world or explicitly approved scenario assumptions."
+      expected_location: ".data/manual"
+
+output_contract:
+  require_provenance: true
+  require_run_manifest: true
+  prohibit_mock_numeric_data: true
+  prohibit_fake_api_outputs: true
+
+not_yet_implemented:
+  - franchise_profitability_model
+  - geospatial_scoring
+  - api_clients
+  - proposal_generation
+  - reviewer_logic

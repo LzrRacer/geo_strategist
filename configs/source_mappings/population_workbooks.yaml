@@ -1,0 +1,274 @@
+version: 1
+source:
+  id: population_workbooks
+  canonical_glob: ".data/manual/population_data/*.xlsx"
+  legacy_fallback_glob: "data/manual/population_data/*.xlsx"
+  inspection_profile: ".cache/inspection/population_data_profile.json"
+
+outputs:
+  normalized_records: ".data/interim/normalized/population/normalized_records.jsonl"
+  source_tables: ".data/interim/normalized/population/source_tables.json"
+  mapping_report_json: ".cache/normalization/population_mapping_report.json"
+  mapping_report_markdown: ".cache/normalization/population_mapping_report.md"
+  manifest: ".cache/normalization/population_manifest.json"
+
+extraction_policy:
+  status_for_unverified_mappings: inferred
+  unresolved_status: unresolved
+  max_header_scan_rows: 30
+  min_non_empty_header_cells: 3
+  min_data_rows_after_header: 1
+  min_confidence_for_extraction: 0.65
+  require_population_value_column: true
+  conservative_keyword_matching: true
+  skip_blank_cells: true
+  do_not_reshape_final_tables: true
+  do_not_calculate_demand: true
+
+keyword_groups:
+  prefecture:
+    - "prefecture"
+    - "都道府県"
+    - "都道府県名"
+  municipality:
+    - "municipality"
+    - "市区町村"
+    - "市町村"
+    - "市区町村名"
+    - "市町村名"
+  age:
+    - "age"
+    - "年齢"
+    - "歳"
+    - "年齢階級"
+  year:
+    - "year"
+    - "年度"
+    - "年次"
+    - "調査年"
+    - "基準年"
+  population:
+    - "population"
+    - "人口"
+    - "総人口"
+
+mapping_slots:
+  - sheet_name: null
+    header_row: null
+    value_columns: []
+    label_columns: []
+    year_columns: []
+    age_columns: []
+    status: inferred
+    notes: "Population-like columns are detected only by conservative keyword matching."
+
+# Manual overrides are mapping metadata only. They do not create or assume
+# population values; values still come from source workbook cells. These
+# overrides are used only when explicit workbook headers/captions support them.
+manual_overrides:
+  - id: pop_total_counts_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo1.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "総人口"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_count
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '総人口（人）'; row 5 gives year labels 2020年 through 2050年."
+    status: manual_verified
+
+  - id: pop_age_0_14_counts_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo2_1.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "0～14歳"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_count
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '0～14歳人口（人）'; row 5 gives year labels 2020年 through 2050年."
+    status: manual_verified
+
+  - id: pop_age_15_64_counts_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo2_2.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "15～64歳"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_count
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '15～64歳人口（人）'; row 5 gives year labels 2020年 through 2050年."
+    status: manual_verified
+
+  - id: pop_age_65_plus_counts_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo2_3.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "65歳以上"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_count
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '65歳以上人口（人）'; row 5 gives year labels 2020年 through 2050年."
+    status: manual_verified
+
+  - id: pop_age_75_plus_counts_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo2_4.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "75歳以上"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_count
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '75歳以上人口（人）'; row 5 gives year labels 2020年 through 2050年."
+    status: manual_verified
+
+  - id: pop_age_0_14_rate_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo3_1.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "0～14歳"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_rate
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '総人口に占める0～14歳人口の割合（％）'; row 5 gives year labels."
+    status: manual_verified
+
+  - id: pop_age_15_64_rate_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo3_2.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "15～64歳"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_rate
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '総人口に占める15～64歳人口の割合（％）'; row 5 gives year labels."
+    status: manual_verified
+
+  - id: pop_age_65_plus_rate_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo3_3.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "65歳以上"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_rate
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '総人口に占める65歳以上人口の割合（％）'; row 5 gives year labels."
+    status: manual_verified
+
+  - id: pop_age_75_plus_rate_2020_2050
+    workbook_path: ".data/manual/population_data/kekkahyo3_4.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 4
+    time_label_row: 5
+    geography_columns: [3, 4]
+    age_columns: []
+    age_label_source: header
+    age_label: "75歳以上"
+    value_columns: [5, 6, 7, 8, 9, 10, 11]
+    population_value_type: population_rate
+    time_label_source: header
+    year_by_column:
+      5: "2020"
+      6: "2025"
+      7: "2030"
+      8: "2035"
+      9: "2040"
+      10: "2045"
+      11: "2050"
+    evidence_text: "Row 4 header is '総人口に占める75歳以上人口の割合（％）'; row 5 gives year labels."
+    status: manual_verified

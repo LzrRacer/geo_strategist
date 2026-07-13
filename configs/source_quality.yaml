@@ -1,0 +1,152 @@
+version: 1
+issue_categories:
+  unresolved_mapping:
+    severity: warning
+    recommended_action: "Review the source table and add a manual mapping only if the source meaning is clear."
+  missing_geography:
+    severity: warning
+    recommended_action: "Confirm geography labels in source records before using the row for geographic analysis."
+  missing_time_label:
+    severity: warning
+    recommended_action: "Confirm time labels in source records before using the row for time-aware analysis."
+  missing_age_label:
+    severity: warning
+    recommended_action: "Confirm age labels in source records before using the row for age-structured analysis."
+  non_numeric_population:
+    severity: error
+    recommended_action: "Use only numeric source-cell values for population_long records."
+  missing_provenance:
+    severity: error
+    recommended_action: "Regenerate upstream normalized records with provenance."
+  missing_source_hash:
+    severity: error
+    recommended_action: "Regenerate upstream normalized records with source file hashes."
+  ambiguous_value_role:
+    severity: warning
+    recommended_action: "Quarantine the record until the value role is manually verified."
+  not_population_count:
+    severity: warning
+    recommended_action: "Do not promote rates or non-count values into population_long; use a separate view if needed."
+  missing_prefecture:
+    severity: warning
+    recommended_action: "Confirm prefecture labels before using the row for geographic QA."
+  missing_municipality:
+    severity: warning
+    recommended_action: "Confirm municipality labels before using the row for geographic QA."
+  missing_year:
+    severity: warning
+    recommended_action: "Confirm year labels before using the row for geographic QA."
+  duplicate_population_key:
+    severity: warning
+    recommended_action: "Deduplicate identical population geography keys before feature building."
+  non_numeric_value:
+    severity: error
+    recommended_action: "Use only numeric values for population geography QA rows."
+  missing_source_record_id:
+    severity: error
+    recommended_action: "Regenerate the view with source record IDs."
+  missing_source_hash:
+    severity: error
+    recommended_action: "Regenerate the view with source file hashes."
+  missing_provenance:
+    severity: error
+    recommended_action: "Regenerate the view with provenance."
+  mixed_count_rate_semantics:
+    severity: error
+    recommended_action: "Keep count and rate semantics explicit and separate."
+  invalid_rate_unit:
+    severity: warning
+    recommended_action: "Use percent-like units for population rate rows."
+  invalid_count_unit:
+    severity: warning
+    recommended_action: "Avoid rate-like units on population count rows."
+  outside_scope_prefecture:
+    severity: info
+    recommended_action: "Keep non-target rows in all-source views; exclude them from the current Tokyo/Aichi/Osaka study area."
+  scope_unknown_prefecture:
+    severity: warning
+    recommended_action: "Review source geography labels before using the row in target-scope analysis."
+  missing_target_prefecture:
+    severity: error
+    recommended_action: "Regenerate study-area filtering with configured prefecture aliases."
+  missing_municipality_in_target_scope:
+    severity: warning
+    recommended_action: "Review source labels; do not infer or invent municipalities."
+  duplicate_target_geography_key:
+    severity: warning
+    recommended_action: "Deduplicate target-scope geography keys before demand modeling."
+  mixed_count_rate_semantics_in_target_scope:
+    severity: error
+    recommended_action: "Keep count and rate target-scope rows in separate outputs."
+  geography_grain_unknown:
+    severity: warning
+    recommended_action: "Review source geography labels before using the row in demand modeling."
+  municipality_grain_missing_municipality:
+    severity: error
+    recommended_action: "Do not treat a row as municipality grain without a municipality label."
+  prefecture_total_has_municipality:
+    severity: error
+    recommended_action: "Keep prefecture-total context rows separate from municipality rows."
+  model_input_candidate_wrong_grain:
+    severity: error
+    recommended_action: "Use only municipality-grain rows as model-input candidates."
+  context_prefecture_total_wrong_grain:
+    severity: error
+    recommended_action: "Use only prefecture_total rows as context prefecture totals."
+  population_base_duplicate_key:
+    severity: warning
+    recommended_action: "Review exact duplicate population-base keys before modeling."
+  population_base_missing_source_traceability:
+    severity: error
+    recommended_action: "Regenerate population-base rows with source record IDs, source hashes, and provenance."
+  missing_expected_year:
+    severity: warning
+    recommended_action: "Review committed mapping expectations and observed rows before feature engineering."
+  missing_expected_age_group:
+    severity: warning
+    recommended_action: "Review committed mapping expectations and observed rows before feature engineering."
+  missing_prefecture_year_age_combination:
+    severity: warning
+    recommended_action: "Review coverage before demand-feature engineering; do not impute values."
+  missing_count_for_rate_combination:
+    severity: warning
+    recommended_action: "Review count coverage before demand-feature engineering; do not convert rates to counts."
+  missing_rate_for_count_combination:
+    severity: info
+    recommended_action: "Keep count/rate semantics separate; review only if rate coverage is required later."
+  duplicate_population_base_key:
+    severity: warning
+    recommended_action: "Review duplicate source rows before demand-feature engineering."
+  conflicting_values_for_same_key:
+    severity: error
+    recommended_action: "Review source rows before modeling; do not aggregate conflicting values."
+  unexpected_geography_grain:
+    severity: error
+    recommended_action: "Regenerate geography-grain classification."
+  unexpected_value_kind:
+    severity: error
+    recommended_action: "Regenerate population-base rows with explicit count/rate semantics."
+  population_base_coverage_missing_traceability:
+    severity: error
+    recommended_action: "Regenerate coverage QA with enough key or source-row context."
+  missing_age_group:
+    severity: warning
+    recommended_action: "Review source labels; do not infer age groups."
+  unknown_age_group:
+    severity: warning
+    recommended_action: "Add a committed alias only if source evidence supports it."
+  ambiguous_age_group_alias:
+    severity: error
+    recommended_action: "Fix committed age-group aliases before feature engineering."
+  age_group_value_kind_mismatch:
+    severity: error
+    recommended_action: "Regenerate age-group normalized rows with explicit count/rate semantics."
+  age_group_missing_source_traceability:
+    severity: error
+    recommended_action: "Regenerate upstream population-base rows with source record IDs, hashes, and provenance."
+  age_group_duplicate_normalized_key:
+    severity: warning
+    recommended_action: "Review duplicate normalized rows before demand-feature engineering."
+  age_group_conflicting_values:
+    severity: error
+    recommended_action: "Review source rows before demand-feature engineering; do not aggregate conflicting values."

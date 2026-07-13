@@ -1,0 +1,73 @@
+version: 1
+applies_to_conditions:
+  - C0
+  - C1
+  - C2
+  - C3
+  - C4
+  - C5
+  - C6
+  - C7
+  - C8
+  - C9
+  - C10
+  - C11
+  - C12
+  - C13
+scale:
+  min: 1
+  max: 5
+  anchors:
+    1: "Unusable or unsupported"
+    2: "Major gaps"
+    3: "Acceptable but incomplete"
+    4: "Strong"
+    5: "Excellent and decision-ready"
+
+criteria:
+  data_provenance:
+    weight: 0.18
+    description: "Every numeric claim is backed by a file cell, API response, RAG citation, or deterministic calculation trace."
+
+  no_mock_or_hallucinated_numbers:
+    weight: 0.14
+    description: "No mock, fake, placeholder, or invented numeric values appear in final outputs unless explicitly documented as scenario assumptions."
+
+  deterministic_reproducibility:
+    weight: 0.12
+    description: "Pipeline can be rerun from configs; schemas validate; seeds, inputs, outputs, and run manifests are recorded."
+
+  domain_demand_logic:
+    weight: 0.12
+    description: "Demand model correctly uses population structure, future projections, catchment logic, and supply/competition signals."
+
+  land_and_profitability_logic:
+    weight: 0.14
+    description: "Land cost, construction/equipment cost, operating expense, cash flow, payback, and sensitivity analysis are coherent."
+
+  proposal_quality:
+    weight: 0.10
+    description: "Proposal is actionable, compares alternatives, states risks, and supports build/consolidate/reorganize/reject decisions."
+
+  reviewer_critique_quality:
+    weight: 0.08
+    description: "Reviewer identifies unsupported claims, weak assumptions, missing data, and feasibility/regulatory risks."
+
+  revision_improvement:
+    weight: 0.06
+    description: "Final proposal demonstrably improves after critique."
+
+  workflow_efficiency:
+    weight: 0.03
+    description: "Produces quality output with reasonable time, cost, retries, and manual intervention."
+
+  activity_pattern_insight:
+    weight: 0.03
+    description: "Run logs reveal interpretable activity patterns such as continuous improvement, exploration, collapse, or brittle revision."
+
+hard_fail_checks:
+  - leaked_secret_detected
+  - final_report_uses_mock_data_without_disclosure
+  - missing_run_manifest
+  - missing_provenance_for_core_financial_numbers
+  - broken_schema_validation
