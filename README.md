@@ -1,14 +1,10 @@
-# Geo Strategist (submission copy)
+# Geo Strategist
 
 Geo Strategist is an evidence-graded experiment system for evaluating agentic
 hospital-location / hospital-reorganization / candidate-site-selection
 proposal generation across 15 conditions (C0–C14) over a real local evidence
 base for Tokyo, Aichi, and Osaka.
 
-This is a trimmed submission copy: `tests/`, `docs/`, and other dev-only
-material have been removed, and only the code, configuration, dependency
-definitions, and required source data needed to run the project are
-included.
 
 ## Requirements
 
@@ -53,8 +49,8 @@ network access at all.
 
 ## Data
 
-`.data/manual/` ships with this submission (hospital cash-flow workbook and
-population data) — it is the only required source input. Everything else
+`.data/manual/` (hospital cash-flow workbook and
+population data) — is the only required source input. Everything else
 the pipeline needs is derived from it via `make pipeline`, or fetched live
 via the optional API keys above.
 
@@ -68,15 +64,6 @@ make audit                   # prototype-safety and eStat-usage audits
 make reproduce-submission     # run conditions C0,C1,C4,C9,C10 (requires live agents)
 ```
 
-### Running all C0–C14 conditions
-
-All commands assume `set -a; source .env; set +a` has run, and share one
-`--output-dir` (`OUT` below) so partial runs never overwrite conditions
-already recorded.
-
-```bash
-OUT=outputs/condition_proposals/<run_name>
-```
 
 **Direct-API conditions** (C0, C1, C4, C13, C14 — one CLI
 call each, no interactive session):
