@@ -2,8 +2,8 @@
 
 Geo Strategist is an evidence-graded experiment system for evaluating agentic
 hospital-location / hospital-reorganization / candidate-site-selection
-proposal generation across 15 conditions (C0–C14) over a real local evidence
-base for Tokyo, Aichi, and Osaka.
+proposal generation across 15 conditions (C0–C14).
+
 
 
 ## Requirements
@@ -130,6 +130,19 @@ conditions):
   population data).
 - `AGENTS.md` — agent-workflow contract read by the agentic conditions.
 
+## References
+
+This project is inspired by Sakana AI's **The AI Scientist** research and
+implementations, particularly their end-to-end agentic workflow, iterative
+experimentation, and automated review design:
+
+- Lu et al., “Towards end-to-end automation of AI research,” *Nature* (2026):  
+  <https://doi.org/10.1038/s41586-026-10265-5>
+- The AI Scientist: <https://github.com/SakanaAI/AI-Scientist>
+- The AI Scientist-v2: <https://github.com/SakanaAI/AI-Scientist-v2>
+
+Geo Strategist is an independent adaptation for evidence-grounded hospital
+location and reorganization research; no endorsement by Sakana AI is implied.
 ## Status
 
 Research prototype for comparing proposal-generation workflows. Every
