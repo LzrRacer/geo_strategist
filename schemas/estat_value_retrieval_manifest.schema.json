@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "estat_value_retrieval_manifest",
+  "title": "e-Stat Value Retrieval Run Manifest",
+  "description": "Manifest for a getStatsData value retrieval run.",
+  "type": "object",
+  "required": [
+    "run_id", "generated_at", "e3_run_id",
+    "allow_network", "estat_app_id_present",
+    "plan_candidate_count", "plan_unambiguous_count", "plan_selected_count",
+    "retrieval_attempts", "cache_hits", "live_fetches",
+    "records_normalized", "issue_count"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "run_id":                  { "type": "string", "format": "uuid" },
+    "generated_at":            { "type": "string", "format": "date-time" },
+    "e3_run_id":               { "type": ["string", "null"] },
+    "e3_run_dir":              { "type": ["string", "null"] },
+    "plan_id":                 { "type": ["string", "null"] },
+    "allow_network":           { "type": "boolean" },
+    "estat_app_id_present":    { "type": "boolean" },
+    "plan_candidate_count":    { "type": "integer", "minimum": 0 },
+    "plan_unambiguous_count":  { "type": "integer", "minimum": 0 },
+    "plan_selected_count":     { "type": "integer", "minimum": 0 },
+    "retrieval_attempts":      { "type": "integer", "minimum": 0 },
+    "cache_hits":              { "type": "integer", "minimum": 0 },
+    "live_fetches":            { "type": "integer", "minimum": 0 },
+    "records_normalized":      { "type": "integer", "minimum": 0 },
+    "issue_count":             { "type": "integer", "minimum": 0 },
+    "actual_values_retrieved": { "type": "boolean" },
+    "suitable_for_e3_rerun":   { "type": "boolean" },
+    "disclaimers":             { "type": "array", "items": { "type": "string" } }
+  }
+}
