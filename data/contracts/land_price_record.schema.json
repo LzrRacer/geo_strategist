@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/land_price_record.schema.json",
+  "title": "LandPriceRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["land_record_id", "source_type", "retrieved_at", "prefecture", "price_value", "price_unit", "price_year", "response_hash"],
+  "properties": {
+    "land_record_id": { "type": "string", "minLength": 1 },
+    "source_type": { "type": "string" },
+    "source_name": { "type": "string" },
+    "source_url": { "type": "string" },
+    "retrieved_at": { "type": "string" },
+    "prefecture": { "type": "string", "minLength": 1 },
+    "municipality": { "type": ["string", "null"] },
+    "address": { "type": ["string", "null"] },
+    "latitude": { "type": ["number", "null"] },
+    "longitude": { "type": ["number", "null"] },
+    "price_value": { "type": "number" },
+    "price_unit": { "type": "string" },
+    "price_year": { "type": "integer" },
+    "land_use": { "type": ["string", "null"] },
+    "survey_type": { "type": ["string", "null"] },
+    "source_record_id": { "type": ["string", "null"] },
+    "response_hash": { "type": "string", "minLength": 1 }
+  }
+}

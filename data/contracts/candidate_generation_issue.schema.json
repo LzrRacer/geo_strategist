@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/candidate_generation_issue.schema.json",
+  "title": "CandidateGenerationIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["issue_id", "issue_code", "severity", "prefecture", "municipality", "detail"],
+  "properties": {
+    "issue_id": { "type": "string" },
+    "issue_code": {
+      "type": "string",
+      "enum": [
+        "candidate_action_not_emitted_due_to_insufficient_evidence",
+        "missing_required_score_field",
+        "missing_required_feature_availability",
+        "no_qualifying_action_for_municipality",
+        "input_artifact_missing",
+        "input_jsonl_invalid"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["error", "warning", "info"]
+    },
+    "prefecture": { "type": ["string", "null"] },
+    "municipality": { "type": ["string", "null"] },
+    "detail": { "type": "string" },
+    "attempted_action": {
+      "type": ["string", "null"],
+      "enum": ["build", "reorganize", "consolidate", null]
+    },
+    "missing_fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

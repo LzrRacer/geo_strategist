@@ -1,0 +1,101 @@
+version: 1
+canonical_sources:
+  hospital_cashflow_workbook:
+    path: ".data/manual/hospital_cf_workbook/hospital_rough_cf_payback_model_tokyo_aichi_osaka_beds_updated.xlsx"
+    tracked_by_git: false
+    role: "Real local workbook for hospital cash-flow and payback inspection."
+    required_for_phase: false
+
+  population_workbooks:
+    glob: ".data/manual/population_data/*.xlsx"
+    tracked_by_git: false
+    role: "Real local population workbooks, including present and future population by age group."
+    required_for_phase: false
+
+  population_rate_view:
+    path: ".data/interim/views/population_rates_long.jsonl"
+    tracked_by_git: false
+    role: "Derived population rate rows kept separate from count-based population_long."
+    required_for_phase: false
+
+  population_geography_qa:
+    path: ".data/interim/qa/population_geography_keys.jsonl"
+    tracked_by_git: false
+    role: "Deterministic QA keys for geography and unit checks."
+    required_for_phase: false
+
+  study_area_config:
+    path: "configs/study_area_tokyo_aichi_osaka.yaml"
+    tracked_by_git: true
+    role: "Static target-prefecture scope and alias configuration for Tokyo, Aichi, and Osaka."
+    required_for_phase: true
+
+api_raw_roots:
+  yahoo_localsearch:
+    path: ".data/api_raw/yahoo/"
+    tracked_by_git: false
+    reference_url: "https://developer.yahoo.co.jp/webapi/map/openlocalplatform/v1/localsearch.html"
+
+  estat:
+    path: ".data/api_raw/estat/"
+    tracked_by_git: false
+    reference_url: "https://www.e-stat.go.jp/api/api-dev/how_to_use"
+
+  reinfolib:
+    path: ".data/api_raw/reinfolib/"
+    tracked_by_git: false
+    reference_url: "https://www.reinfolib.mlit.go.jp/help/apiManual/"
+
+generated_local_artifacts:
+  normalized_intermediate_records:
+    path: ".data/interim/normalized/"
+    tracked_by_git: false
+
+  analysis_ready_views:
+    path: ".data/interim/views/"
+    tracked_by_git: false
+
+  qa_intermediate_outputs:
+    path: ".data/interim/qa/"
+    tracked_by_git: false
+
+  study_area_intermediate_outputs:
+    path: ".data/interim/study_area/tokyo_aichi_osaka/"
+    tracked_by_git: false
+    role: "Target-scope population, geography-grain, age-normalized, and pre-demand population-base rows for Tokyo, Aichi, and Osaka."
+
+  study_area_cache_outputs:
+    path: ".cache/study_area/tokyo_aichi_osaka/"
+    tracked_by_git: false
+    role: "Target-scope scope summaries, geography-grain summaries, population-base reports, age-group reports, coverage QA reports, manifests, and QA issues."
+
+  inspection_profiles:
+    path: ".cache/inspection/"
+    tracked_by_git: false
+
+  inventory_profiles:
+    path: ".cache/inventory/"
+    tracked_by_git: false
+
+  normalization_profiles:
+    path: ".cache/normalization/"
+    tracked_by_git: false
+
+  analysis_view_profiles:
+    path: ".cache/views/"
+    tracked_by_git: false
+
+  extraction_review_profiles:
+    path: ".cache/review/"
+    tracked_by_git: false
+
+  run_outputs:
+    path: ".runs/"
+    tracked_by_git: false
+
+legacy_fallback:
+  manual_inputs:
+    path: "data/manual/"
+    status: transitional
+    tracked_by_git: false
+    warning: "Detected only when canonical .data/manual is absent; do not commit local data here."

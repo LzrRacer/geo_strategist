@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/cost_assumption.schema.json",
+  "title": "CostAssumption",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["assumption_id", "name", "value", "unit", "basis", "provenance"],
+  "properties": {
+    "assumption_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "value": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "source_ref.schema.json"
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "provenance_record.schema.json"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

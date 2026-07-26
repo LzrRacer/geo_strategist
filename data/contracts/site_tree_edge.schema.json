@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/site_tree_edge.schema.json",
+  "title": "SiteTreeEdge",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["edge_id", "parent_node_id", "child_node_id", "edge_kind"],
+  "properties": {
+    "edge_id": { "type": "string", "minLength": 1 },
+    "parent_node_id": { "type": "string", "minLength": 1 },
+    "child_node_id": { "type": "string", "minLength": 1 },
+    "edge_kind": {
+      "type": "string",
+      "enum": [
+        "region_to_municipality",
+        "municipality_to_site",
+        "site_to_facility_concept",
+        "facility_concept_to_financial_scenario"
+      ]
+    }
+  }
+}

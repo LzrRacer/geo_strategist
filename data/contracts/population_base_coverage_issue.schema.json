@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/population_base_coverage_issue.schema.json",
+  "title": "PopulationBaseCoverageIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "severity",
+    "issue_type",
+    "message",
+    "study_area_id",
+    "recommended_action"
+  ],
+  "properties": {
+    "issue_id": {"type": "string", "minLength": 1},
+    "severity": {"type": "string", "enum": ["info", "warning", "error"]},
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "missing_expected_year",
+        "missing_expected_age_group",
+        "missing_prefecture_year_age_combination",
+        "missing_count_for_rate_combination",
+        "missing_rate_for_count_combination",
+        "duplicate_population_base_key",
+        "conflicting_values_for_same_key",
+        "unexpected_geography_grain",
+        "unexpected_value_kind",
+        "missing_source_traceability"
+      ]
+    },
+    "message": {"type": "string", "minLength": 1},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "coverage_key": {"type": ["string", "null"]},
+    "target_prefecture": {"type": ["string", "null"]},
+    "year": {"type": ["string", "integer", "null"]},
+    "age_group": {"type": ["string", "null"]},
+    "value_kind": {"type": ["string", "null"], "enum": ["count", "rate", null]},
+    "geography_grain": {
+      "type": ["string", "null"],
+      "enum": ["prefecture_total", "municipality", "unknown", null]
+    },
+    "population_base_role": {
+      "type": ["string", "null"],
+      "enum": [
+        "model_input_candidate",
+        "context_prefecture_total",
+        "excluded_requires_review",
+        null
+      ]
+    },
+    "source_record_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "source_file_hashes": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+    },
+    "recommended_action": {"type": "string", "minLength": 1}
+  }
+}

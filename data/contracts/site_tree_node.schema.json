@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/site_tree_node.schema.json",
+  "title": "SiteTreeNode",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["node_id", "parent_node_id", "depth", "node_kind", "status", "generated_at"],
+  "properties": {
+    "node_id": { "type": "string", "minLength": 1 },
+    "parent_node_id": { "type": ["string", "null"] },
+    "depth": { "type": "integer", "minimum": 0 },
+    "node_kind": {
+      "type": "string",
+      "enum": ["root", "municipality", "site", "facility_concept", "financial_scenario"]
+    },
+    "candidate_site_id": { "type": ["string", "null"] },
+    "action_type": {
+      "type": ["string", "null"],
+      "enum": ["build", "rebuild", "relocate", "consolidate", "acquire", "lease", "reject", "defer", null]
+    },
+    "service_line_hypothesis": { "type": ["string", "null"] },
+    "investment_hypothesis": { "type": ["string", "null"] },
+    "evidence_bundle": { "type": "object" },
+    "financial_model_snapshot": { "type": "object" },
+    "operational_plan_snapshot": { "type": "object" },
+    "risk_register": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "reviewer_feedback": { "type": ["object", "null"] },
+    "score_vector": { "type": "object" },
+    "status": {
+      "type": "string",
+      "enum": ["expanded", "selected", "rejected", "needs_more_data", "failed_validation"]
+    },
+    "status_reason": { "type": ["string", "null"] },
+    "expansion_strategies_favoring_this_node": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}

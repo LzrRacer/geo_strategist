@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/age_group_normalized_record.schema.json",
+  "title": "AgeGroupNormalizedRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "base_record_id",
+    "source_record_ids",
+    "source_file_hash",
+    "provenance",
+    "study_area_id",
+    "matched_target_prefecture",
+    "raw_age_group",
+    "age_group_match_status",
+    "age_group_kind",
+    "value_kind",
+    "geography_grain",
+    "population_base_role"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "base_record_id": {"type": "string", "minLength": 1},
+    "source_record_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "source_file_path": {"type": ["string", "null"]},
+    "source_sheet": {"type": ["string", "null"]},
+    "source_file_hash": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "provenance_record.schema.json"}
+    },
+    "study_area_id": {"type": "string", "minLength": 1},
+    "matched_target_prefecture": {"type": "string", "minLength": 1},
+    "raw_municipality": {"type": ["string", "null"]},
+    "municipality": {"type": ["string", "null"]},
+    "year": {"type": ["integer", "string", "null"]},
+    "raw_age_group": {"type": ["string", "null"]},
+    "canonical_age_group_id": {"type": ["string", "null"]},
+    "canonical_age_group_label": {"type": ["string", "null"]},
+    "age_group_match_status": {
+      "type": "string",
+      "enum": ["canonical", "alias", "missing", "unknown"]
+    },
+    "age_group_kind": {
+      "type": "string",
+      "enum": ["total", "age_band", "threshold_plus", "unknown"]
+    },
+    "age_sort_key": {"type": ["integer", "null"]},
+    "population_value": {"type": ["number", "null"]},
+    "rate_value": {"type": ["number", "null"]},
+    "unit": {"type": ["string", "null"]},
+    "value_kind": {"type": "string", "enum": ["count", "rate"]},
+    "geography_grain": {
+      "type": "string",
+      "enum": ["prefecture_total", "municipality", "unknown"]
+    },
+    "population_base_role": {
+      "type": "string",
+      "enum": [
+        "model_input_candidate",
+        "context_prefecture_total",
+        "excluded_requires_review"
+      ]
+    }
+  }
+}

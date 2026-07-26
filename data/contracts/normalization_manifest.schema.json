@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/normalization_manifest.schema.json",
+  "title": "NormalizationManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "source_type",
+    "started_at",
+    "input_files",
+    "output_files",
+    "source_table_count",
+    "normalized_record_count",
+    "unresolved_mapping_count",
+    "warnings"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "input_files": {
+      "type": "array",
+      "items": {
+        "$ref": "source_ref.schema.json"
+      }
+    },
+    "output_files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_table_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "normalized_record_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "unresolved_mapping_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "code_version": {
+      "type": ["string", "null"]
+    }
+  }
+}

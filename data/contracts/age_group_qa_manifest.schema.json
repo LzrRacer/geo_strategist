@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/age_group_qa_manifest.schema.json",
+  "title": "AgeGroupQAManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "generated_at",
+    "study_area_id",
+    "input_files",
+    "output_files",
+    "record_counts",
+    "issue_counts",
+    "warnings"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "input_files": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "output_files": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "record_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "issue_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

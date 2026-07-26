@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/geography_grain_issue.schema.json",
+  "title": "GeographyGrainIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "severity",
+    "issue_type",
+    "message",
+    "study_area_id",
+    "matched_target_prefecture",
+    "geography_grain",
+    "value_kind",
+    "recommended_action"
+  ],
+  "properties": {
+    "issue_id": {"type": "string", "minLength": 1},
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warning", "error"]
+    },
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "geography_grain_unknown",
+        "municipality_grain_missing_municipality",
+        "prefecture_total_has_municipality",
+        "model_input_candidate_wrong_grain",
+        "context_prefecture_total_wrong_grain",
+        "population_base_duplicate_key",
+        "population_base_missing_source_traceability",
+        "mixed_count_rate_semantics_in_population_base"
+      ]
+    },
+    "message": {"type": "string", "minLength": 1},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "matched_target_prefecture": {"type": "string", "minLength": 1},
+    "raw_municipality": {"type": ["string", "null"]},
+    "municipality": {"type": ["string", "null"]},
+    "geography_grain": {
+      "type": "string",
+      "enum": ["prefecture_total", "municipality", "unknown"]
+    },
+    "population_base_role": {
+      "type": ["string", "null"],
+      "enum": [
+        "model_input_candidate",
+        "context_prefecture_total",
+        "excluded_requires_review",
+        null
+      ]
+    },
+    "year": {"type": ["integer", "string", "null"]},
+    "age_group": {"type": ["string", "null"]},
+    "value_kind": {
+      "type": "string",
+      "enum": ["count", "rate"]
+    },
+    "source_record_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "source_file_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "recommended_action": {"type": "string", "minLength": 1}
+  }
+}

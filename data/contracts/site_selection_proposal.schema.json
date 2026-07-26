@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/site_selection_proposal.schema.json",
+  "title": "SiteSelectionProposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proposal_id",
+    "candidate_site_id",
+    "rank",
+    "action_type",
+    "site_fact_sheet",
+    "final_recommendation",
+    "evidence_table",
+    "assumption_table",
+    "items_requiring_human_expert_validation",
+    "generated_at"
+  ],
+  "properties": {
+    "proposal_id": { "type": "string", "minLength": 1 },
+    "candidate_site_id": { "type": "string", "minLength": 1 },
+    "rank": { "type": "integer", "minimum": 1 },
+    "action_type": { "type": "string" },
+    "service_line_hypothesis": { "type": ["string", "null"] },
+    "site_fact_sheet": { "type": "object" },
+    "demand_and_catchment_analysis": { "type": "object" },
+    "competitor_supply_analysis": { "type": "object" },
+    "facility_concept": { "type": "object" },
+    "capex_assumptions": { "type": "object" },
+    "revenue_assumptions": { "type": "object" },
+    "opex_assumptions": { "type": "object" },
+    "cash_flow_scenarios": { "type": "object" },
+    "sensitivity_analysis": { "type": "object" },
+    "operational_feasibility": { "type": "object" },
+    "regulatory_and_due_diligence_checklist": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_register": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "evidence_table": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "assumption_table": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "final_recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "confidence_level", "rationale"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "site_specific_recommendation",
+            "municipality_level_recommendation_site_tbd",
+            "not_recommended_insufficient_evidence"
+          ]
+        },
+        "confidence_level": { "type": "string", "enum": ["high", "medium", "low"] },
+        "rationale": { "type": "string" },
+        "decision_support_disclaimer": { "type": "string" }
+      }
+    },
+    "items_requiring_human_expert_validation": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}

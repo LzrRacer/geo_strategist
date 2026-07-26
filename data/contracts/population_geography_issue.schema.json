@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/population_geography_issue.schema.json",
+  "title": "PopulationGeographyIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "severity",
+    "issue_type",
+    "message",
+    "recommended_action"
+  ],
+  "properties": {
+    "issue_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warning", "error"]
+    },
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "missing_prefecture",
+        "missing_municipality",
+        "missing_year",
+        "missing_age_label",
+        "duplicate_population_key",
+        "non_numeric_value",
+        "missing_source_hash",
+        "missing_source_record_id",
+        "missing_provenance",
+        "mixed_count_rate_semantics",
+        "invalid_rate_unit",
+        "invalid_count_unit",
+        "missing_geography",
+        "outside_scope_prefecture",
+        "scope_unknown_prefecture",
+        "missing_target_prefecture",
+        "missing_municipality_in_target_scope",
+        "duplicate_target_geography_key",
+        "mixed_count_rate_semantics_in_target_scope"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_record_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_file_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "recommended_action": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

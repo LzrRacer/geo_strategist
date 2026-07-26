@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/model_input_readiness_record.schema.json",
+  "title": "ModelInputReadinessRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "study_area_id",
+    "matched_target_prefecture",
+    "value_kind",
+    "geography_grain",
+    "population_base_role",
+    "readiness_role",
+    "readiness_status",
+    "readiness_key",
+    "blocking_issue_codes"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "matched_target_prefecture": {"type": "string", "minLength": 1},
+    "municipality": {"type": ["string", "null"]},
+    "year": {"type": ["integer", "string", "null"]},
+    "canonical_age_group_id": {"type": ["string", "null"]},
+    "canonical_age_group_label": {"type": ["string", "null"]},
+    "value_kind": {"type": "string", "enum": ["count", "rate"]},
+    "geography_grain": {"type": "string", "enum": ["prefecture_total", "municipality", "unknown"]},
+    "population_base_role": {
+      "type": "string",
+      "enum": ["model_input_candidate", "context_prefecture_total", "excluded_requires_review"]
+    },
+    "readiness_role": {"type": "string", "enum": ["model_input", "context"]},
+    "readiness_status": {"type": "string", "enum": ["ready", "context_only", "blocked"]},
+    "readiness_key": {"type": "string", "minLength": 1},
+    "blocking_issue_codes": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

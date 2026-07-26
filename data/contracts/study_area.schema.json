@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/study_area.schema.json",
+  "title": "StudyArea",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "study_area_id",
+    "target_prefectures",
+    "aliases",
+    "scope_policy"
+  ],
+  "properties": {
+    "study_area_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_prefectures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "scope_policy": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

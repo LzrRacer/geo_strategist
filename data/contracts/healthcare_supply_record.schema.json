@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/healthcare_supply_record.schema.json",
+  "title": "HealthcareSupplyRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["supply_record_id", "source_type", "retrieved_at", "response_hash"],
+  "properties": {
+    "supply_record_id": { "type": "string", "minLength": 1 },
+    "source_type": { "type": "string" },
+    "source_name": { "type": "string" },
+    "source_url": { "type": "string" },
+    "retrieved_at": { "type": "string" },
+    "facility_name": { "type": ["string", "null"] },
+    "facility_category": { "type": ["string", "null"] },
+    "prefecture": { "type": ["string", "null"] },
+    "municipality": { "type": ["string", "null"] },
+    "address": { "type": ["string", "null"] },
+    "latitude": { "type": ["number", "null"] },
+    "longitude": { "type": ["number", "null"] },
+    "source_record_id": { "type": ["string", "null"] },
+    "response_hash": { "type": "string", "minLength": 1 },
+    "query_used": { "type": ["string", "null"] }
+  }
+}

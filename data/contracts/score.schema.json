@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/score.schema.json",
+  "title": "Score",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["score_id", "scorer_type", "criterion", "value", "scale_min", "scale_max"],
+  "properties": {
+    "score_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposal_id": {
+      "type": "string"
+    },
+    "scorer_type": {
+      "type": "string",
+      "enum": ["human_reviewer", "llm_as_judge", "deterministic_validator"]
+    },
+    "criterion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rubric_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "value": {
+      "type": "number"
+    },
+    "scale_min": {
+      "type": "number"
+    },
+    "scale_max": {
+      "type": "number"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

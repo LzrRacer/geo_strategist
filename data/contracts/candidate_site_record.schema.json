@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/candidate_site_record.schema.json",
+  "title": "CandidateSiteRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_site_id",
+    "action_type",
+    "prefecture",
+    "municipality",
+    "address",
+    "parcel_id",
+    "site_evidence_grade",
+    "source_refs",
+    "blocking_issues",
+    "generation_mode"
+  ],
+  "properties": {
+    "candidate_site_id": { "type": "string", "minLength": 1 },
+    "action_type": {
+      "type": "string",
+      "enum": ["build", "rebuild", "relocate", "consolidate", "acquire", "lease", "reject", "defer"]
+    },
+    "anchor_master_id": { "type": ["string", "null"] },
+    "facility_name": { "type": ["string", "null"] },
+    "prefecture": { "type": "string", "minLength": 1 },
+    "municipality": { "type": ["string", "null"] },
+    "address": { "type": ["string", "null"] },
+    "latitude": { "type": ["number", "null"], "minimum": -90, "maximum": 90 },
+    "longitude": { "type": ["number", "null"], "minimum": -180, "maximum": 180 },
+    "parcel_id": { "type": ["string", "null"] },
+    "parcel_id_not_available_reason": { "type": ["string", "null"] },
+    "site_area_m2": { "type": ["number", "null"] },
+    "zoning_or_land_use": { "type": ["string", "null"] },
+    "nearest_transport_access": { "type": ["string", "null"] },
+    "catchment_area_definition": { "type": ["string", "null"] },
+    "nearby_existing_facilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["facility_name", "distance_km"],
+        "properties": {
+          "facility_name": { "type": "string" },
+          "distance_km": { "type": "number", "minimum": 0 },
+          "is_hospital_like": { "type": "boolean" }
+        }
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_artifact", "source_record_id", "source_field"],
+        "properties": {
+          "source_artifact": { "type": "string" },
+          "source_record_id": { "type": "string" },
+          "source_field": { "type": "string" },
+          "source_url": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "site_evidence_grade": {
+      "type": "string",
+      "enum": [
+        "verified_source",
+        "derived_from_verified_source",
+        "third_party_estimate",
+        "scenario_assumption",
+        "model_estimate",
+        "unverified_candidate",
+        "rejected_or_blocked"
+      ]
+    },
+    "address_evidence_grade": {
+      "type": "string",
+      "enum": [
+        "verified_source",
+        "derived_from_verified_source",
+        "third_party_estimate",
+        "scenario_assumption",
+        "model_estimate",
+        "unverified_candidate",
+        "rejected_or_blocked"
+      ]
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "generation_mode": {
+      "type": "string",
+      "enum": ["public_dataset_mode", "manual_source_mode", "database_mode"]
+    },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}

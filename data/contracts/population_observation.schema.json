@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/population_observation.schema.json",
+  "title": "PopulationObservation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["observation_id", "prefecture", "metric", "value", "unit", "provenance"],
+  "properties": {
+    "observation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prefecture": {
+      "type": "string",
+      "minLength": 1
+    },
+    "municipality": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "age_group": {
+      "type": "string"
+    },
+    "metric": {
+      "type": "string",
+      "minLength": 1
+    },
+    "value": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "provenance_record.schema.json"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

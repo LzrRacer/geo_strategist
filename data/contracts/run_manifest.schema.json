@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/run_manifest.schema.json",
+  "title": "RunManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "condition_id", "output_directory", "status"],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "condition_id": {
+      "type": "string",
+      "pattern": "^C[0-7]$"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "config_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "source_ref.schema.json"
+      }
+    },
+    "input_provenance": {
+      "type": "array",
+      "items": {
+        "$ref": "provenance_record.schema.json"
+      }
+    },
+    "activity_events": {
+      "type": "array",
+      "items": {
+        "$ref": "activity_event.schema.json"
+      }
+    },
+    "output_directory": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planned", "running", "completed", "failed", "scaffold"]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

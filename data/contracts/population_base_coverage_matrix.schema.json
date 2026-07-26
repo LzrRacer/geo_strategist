@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/population_base_coverage_matrix.schema.json",
+  "title": "PopulationBaseCoverageMatrix",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "matrix_id",
+    "study_area_id",
+    "coverage_axis",
+    "axis_values",
+    "row_count"
+  ],
+  "properties": {
+    "matrix_id": {"type": "string", "minLength": 1},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "coverage_axis": {
+      "type": "string",
+      "enum": [
+        "target_prefecture",
+        "year",
+        "age_group",
+        "geography_grain",
+        "value_kind",
+        "population_base_role"
+      ]
+    },
+    "axis_values": {
+      "type": "object",
+      "additionalProperties": {"type": ["string", "integer", "null"]}
+    },
+    "target_prefecture": {"type": ["string", "null"]},
+    "year": {"type": ["string", "integer", "null"]},
+    "age_group": {"type": ["string", "null"]},
+    "value_kind": {"type": ["string", "null"], "enum": ["count", "rate", null]},
+    "geography_grain": {
+      "type": ["string", "null"],
+      "enum": ["prefecture_total", "municipality", "unknown", null]
+    },
+    "population_base_role": {
+      "type": ["string", "null"],
+      "enum": [
+        "model_input_candidate",
+        "context_prefecture_total",
+        "excluded_requires_review",
+        null
+      ]
+    },
+    "row_count": {"type": "integer", "minimum": 0}
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/proposal.schema.json",
+  "title": "Proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["proposal_id", "proposal_type", "title", "source_refs"],
+  "properties": {
+    "proposal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposal_type": {
+      "type": "string",
+      "enum": [
+        "new_construction",
+        "consolidation",
+        "reorganization",
+        "closure_relocation",
+        "mixed"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "site_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "summary": {
+      "type": "string"
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "source_ref.schema.json"
+      }
+    },
+    "cost_assumption_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "cashflow_projection_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "revised", "selected", "rejected"]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

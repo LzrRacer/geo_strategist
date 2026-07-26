@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/model_input_readiness_manifest.schema.json",
+  "title": "ModelInputReadinessManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "generated_at",
+    "study_area_id",
+    "input_files",
+    "output_files",
+    "record_counts",
+    "issue_counts_by_severity",
+    "issue_counts_by_code",
+    "warnings"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "minLength": 1},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "input_files": {"type": "array", "items": {"type": "string"}},
+    "output_files": {"type": "array", "items": {"type": "string"}},
+    "record_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "issue_counts_by_severity": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "issue_counts_by_code": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

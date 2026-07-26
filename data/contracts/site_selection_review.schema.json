@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/site_selection_review.schema.json",
+  "title": "SiteSelectionReview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["review_id", "proposal_id", "reviewer_role", "dimension_scores", "mean_score", "decision", "generated_at"],
+  "properties": {
+    "review_id": { "type": "string", "minLength": 1 },
+    "proposal_id": { "type": "string", "minLength": 1 },
+    "reviewer_role": {
+      "type": "string",
+      "enum": [
+        "healthcare_strategy_reviewer",
+        "real_estate_site_reviewer",
+        "financial_model_reviewer",
+        "operations_reviewer",
+        "regulatory_risk_reviewer",
+        "data_provenance_reviewer",
+        "skeptical_investment_committee_reviewer"
+      ]
+    },
+    "dimension_scores": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 1, "maximum": 5 }
+    },
+    "mean_score": { "type": "number", "minimum": 1, "maximum": 5 },
+    "comments": { "type": "array", "items": { "type": "string" } },
+    "major_strengths": { "type": "array", "items": { "type": "string" } },
+    "major_weaknesses": { "type": "array", "items": { "type": "string" } },
+    "required_revisions": { "type": "array", "items": { "type": "string" } },
+    "decision": {
+      "type": "string",
+      "enum": ["accept", "weak_accept", "borderline", "weak_reject", "reject"]
+    },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}

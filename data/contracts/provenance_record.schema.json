@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/provenance_record.schema.json",
+  "title": "ProvenanceRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["provenance_id", "source_ref", "claim"],
+  "properties": {
+    "provenance_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_ref": {
+      "$ref": "source_ref.schema.json"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "locator": {
+      "type": "string"
+    },
+    "input_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "calculated_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "calculation_method": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/municipality_healthcare_supply_feature_record.schema.json",
+  "title": "MunicipalityHealthcareSupplyFeatureRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["feature_id", "study_area_id", "prefecture", "municipality", "healthcare_supply_coverage_status"],
+  "properties": {
+    "feature_id": { "type": "string", "minLength": 1 },
+    "study_area_id": { "type": "string" },
+    "prefecture": { "type": "string" },
+    "municipality": { "type": "string" },
+    "healthcare_supply_record_count": { "type": "integer", "minimum": 0 },
+    "hospital_count": { "type": "integer", "minimum": 0 },
+    "clinic_count": { "type": "integer", "minimum": 0 },
+    "other_medical_count": { "type": "integer", "minimum": 0 },
+    "supply_density_per_100k": { "type": ["number", "null"] },
+    "healthcare_supply_coverage_status": { "type": "string", "enum": ["available", "unavailable", "partial"] },
+    "population_denominator_year": { "type": ["integer", "null"] },
+    "population_denominator_used": { "type": ["number", "null"] }
+  }
+}

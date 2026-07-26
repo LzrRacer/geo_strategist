@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/source_registry.schema.json",
+  "title": "ResolvedSourceRegistryEntry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_key", "category", "connector", "status", "checked_at"],
+  "properties": {
+    "source_key": { "type": "string", "minLength": 1 },
+    "category": { "type": "string", "minLength": 1 },
+    "connector": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["connected", "not_configured", "missing_file", "error"]
+    },
+    "evidence_grade": {
+      "type": ["string", "null"],
+      "enum": [
+        "verified_source",
+        "derived_from_verified_source",
+        "third_party_estimate",
+        "scenario_assumption",
+        "model_estimate",
+        "unverified_candidate",
+        "rejected_or_blocked",
+        null
+      ]
+    },
+    "path": { "type": ["string", "null"] },
+    "record_count": { "type": ["integer", "null"], "minimum": 0 },
+    "description": { "type": ["string", "null"] },
+    "issue": { "type": ["string", "null"] },
+    "checked_at": { "type": "string", "format": "date-time" }
+  }
+}

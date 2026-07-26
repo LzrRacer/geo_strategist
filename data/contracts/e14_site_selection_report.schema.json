@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/e14_site_selection_report.schema.json",
+  "title": "E14SiteSelectionReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "generated_at",
+    "reviewer_roles",
+    "primary_rubric_dimensions",
+    "secondary_audit_dimensions",
+    "proposal_count",
+    "reviewed_proposal_ids",
+    "decision_support_disclaimer"
+  ],
+  "properties": {
+    "run_id": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "reviewer_roles": { "type": "array", "items": { "type": "string" } },
+    "primary_rubric_dimensions": { "type": "array", "items": { "type": "string" } },
+    "secondary_audit_dimensions": { "type": "array", "items": { "type": "string" } },
+    "proposal_count": { "type": "integer", "minimum": 0 },
+    "reviewed_proposal_ids": { "type": "array", "items": { "type": "string" } },
+    "rankings": { "type": "array", "items": { "type": "object" } },
+    "pairwise_comparison_count": { "type": "integer", "minimum": 0 },
+    "revision_request_count": { "type": "integer", "minimum": 0 },
+    "decision_support_disclaimer": { "type": "string" }
+  }
+}

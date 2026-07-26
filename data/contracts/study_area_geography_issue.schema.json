@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/study_area_geography_issue.schema.json",
+  "title": "StudyAreaGeographyIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "severity",
+    "issue_type",
+    "message",
+    "study_area_id",
+    "scope_status",
+    "value_kind",
+    "recommended_action"
+  ],
+  "properties": {
+    "issue_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warning", "error"]
+    },
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "outside_scope_prefecture",
+        "scope_unknown_prefecture",
+        "missing_target_prefecture",
+        "missing_municipality_in_target_scope",
+        "missing_year",
+        "missing_age_label",
+        "duplicate_target_geography_key",
+        "mixed_count_rate_semantics_in_target_scope",
+        "missing_source_record_id",
+        "missing_source_hash",
+        "missing_provenance"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "study_area_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope_status": {
+      "type": "string",
+      "enum": ["in_scope", "outside_scope", "scope_unknown"]
+    },
+    "target_prefecture": {
+      "type": ["string", "null"]
+    },
+    "raw_prefecture": {
+      "type": ["string", "null"]
+    },
+    "raw_municipality": {
+      "type": ["string", "null"]
+    },
+    "year": {
+      "type": ["integer", "string", "null"]
+    },
+    "age_group": {
+      "type": ["string", "null"]
+    },
+    "value_kind": {
+      "type": "string",
+      "enum": ["count", "rate"]
+    },
+    "source_record_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_file_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "recommended_action": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

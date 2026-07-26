@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/source_table.schema.json",
+  "title": "SourceTable",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "table_id",
+    "workbook_path",
+    "source_file_hash",
+    "sheet_name",
+    "row_count",
+    "column_count",
+    "column_names",
+    "table_role",
+    "mapping_status"
+  ],
+  "properties": {
+    "table_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workbook_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_file_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "sheet_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "row_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "column_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "detected_header_row": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "column_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "table_role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mapping_status": {
+      "type": "string",
+      "enum": ["manual_verified", "inferred", "unresolved"]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

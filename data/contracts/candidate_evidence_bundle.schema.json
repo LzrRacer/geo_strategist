@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/candidate_evidence_bundle.schema.json",
+  "title": "CandidateEvidenceBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id", "candidate_action", "prefecture", "municipality",
+    "population_features_summary", "land_features_summary",
+    "healthcare_supply_features_summary", "score_summary",
+    "coverage_summary", "known_limitations",
+    "source_artifact_refs", "issue_refs", "forbidden_claims"
+  ],
+  "properties": {
+    "candidate_id": { "type": "string", "minLength": 1 },
+    "candidate_action": {
+      "type": "string",
+      "enum": ["build", "reorganize", "consolidate"]
+    },
+    "prefecture": { "type": "string" },
+    "municipality": { "type": "string" },
+    "population_features_summary": {
+      "type": "object",
+      "description": "Deterministic population feature values from feature base (no invented values)"
+    },
+    "land_features_summary": {
+      "type": "object",
+      "description": "Land price feature values from enriched feature base (null if unavailable)"
+    },
+    "healthcare_supply_features_summary": {
+      "type": "object",
+      "description": "Healthcare supply feature values from enriched feature base (null if unavailable)"
+    },
+    "score_summary": {
+      "type": "object",
+      "description": "Score values from enriched score layer"
+    },
+    "coverage_summary": {
+      "type": "object",
+      "description": "Coverage status of each data source for this municipality"
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit limitations in the evidence (missing sources, partial data, etc.)"
+    },
+    "source_artifact_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Canonical paths of source artifacts used to build this bundle"
+    },
+    "issue_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "forbidden_claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit claims prohibited in LLM proposals based on this bundle"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/site_feature_record.schema.json",
+  "title": "SiteFeatureRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_site_id",
+    "demand_features",
+    "supply_features",
+    "accessibility_features",
+    "land_build_features",
+    "financial_features",
+    "risk_features",
+    "generated_at"
+  ],
+  "$defs": {
+    "featureValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "formula", "input_fields", "source_refs", "assumption_refs", "evidence_grade"],
+      "properties": {
+        "value": {},
+        "unit": { "type": "string" },
+        "formula": { "type": "string" },
+        "input_fields": { "type": "array", "items": { "type": "string" } },
+        "source_refs": { "type": "array", "items": { "type": "object" } },
+        "assumption_refs": { "type": "array", "items": { "type": "string" } },
+        "evidence_grade": {
+          "type": "string",
+          "enum": [
+            "verified_source",
+            "derived_from_verified_source",
+            "third_party_estimate",
+            "scenario_assumption",
+            "model_estimate",
+            "unverified_candidate",
+            "rejected_or_blocked"
+          ]
+        }
+      }
+    },
+    "featureGroup": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/featureValue" }
+    }
+  },
+  "properties": {
+    "candidate_site_id": { "type": "string", "minLength": 1 },
+    "demand_features": { "$ref": "#/$defs/featureGroup" },
+    "supply_features": { "$ref": "#/$defs/featureGroup" },
+    "accessibility_features": { "$ref": "#/$defs/featureGroup" },
+    "land_build_features": { "$ref": "#/$defs/featureGroup" },
+    "financial_features": { "$ref": "#/$defs/featureGroup" },
+    "risk_features": { "$ref": "#/$defs/featureGroup" },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/hospital_workbook_fact.schema.json",
+  "title": "HospitalWorkbookFact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fact_id",
+    "source_record_ids",
+    "source_sheet",
+    "field_name",
+    "value",
+    "value_type",
+    "source_file_hash",
+    "provenance"
+  ],
+  "properties": {
+    "fact_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_record_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_file_path": {
+      "type": "string"
+    },
+    "source_file_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "source_sheet": {
+      "type": "string",
+      "minLength": 1
+    },
+    "field_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "value": {
+      "type": ["string", "number", "boolean"]
+    },
+    "value_type": {
+      "type": "string",
+      "enum": ["string", "number", "date", "boolean", "formula"]
+    },
+    "unit": {
+      "type": ["string", "null"]
+    },
+    "source_row_number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_column_number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "original_column": {
+      "type": "string"
+    },
+    "original_header": {
+      "type": ["string", "null"]
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "provenance_record.schema.json"
+      }
+    }
+  }
+}

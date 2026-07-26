@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/source_ref.schema.json",
+  "title": "SourceRef",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_id", "kind"],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "manual_file",
+        "api_raw",
+        "cache",
+        "run_output",
+        "derived",
+        "reference",
+        "config_assumption"
+      ]
+    },
+    "path": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

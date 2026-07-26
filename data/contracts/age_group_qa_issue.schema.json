@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/age_group_qa_issue.schema.json",
+  "title": "AgeGroupQAIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "severity",
+    "issue_type",
+    "message",
+    "study_area_id",
+    "recommended_action"
+  ],
+  "properties": {
+    "issue_id": {"type": "string", "minLength": 1},
+    "severity": {"type": "string", "enum": ["info", "warning", "error"]},
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "missing_age_group",
+        "unknown_age_group",
+        "ambiguous_age_group_alias",
+        "age_group_value_kind_mismatch",
+        "age_group_missing_source_traceability",
+        "age_group_duplicate_normalized_key",
+        "age_group_conflicting_values"
+      ]
+    },
+    "message": {"type": "string", "minLength": 1},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "normalized_key": {"type": ["string", "null"]},
+    "raw_age_group": {"type": ["string", "null"]},
+    "canonical_age_group_id": {"type": ["string", "null"]},
+    "canonical_age_group_label": {"type": ["string", "null"]},
+    "value_kind": {"type": ["string", "null"], "enum": ["count", "rate", null]},
+    "geography_grain": {
+      "type": ["string", "null"],
+      "enum": ["prefecture_total", "municipality", "unknown", null]
+    },
+    "population_base_role": {
+      "type": ["string", "null"],
+      "enum": [
+        "model_input_candidate",
+        "context_prefecture_total",
+        "excluded_requires_review",
+        null
+      ]
+    },
+    "source_record_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "source_file_hashes": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+    },
+    "recommended_action": {"type": "string", "minLength": 1}
+  }
+}

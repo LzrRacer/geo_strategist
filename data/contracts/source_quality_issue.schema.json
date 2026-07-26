@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/source_quality_issue.schema.json",
+  "title": "SourceQualityIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "severity",
+    "issue_type",
+    "message",
+    "recommended_action"
+  ],
+  "properties": {
+    "issue_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warning", "error"]
+    },
+    "source_file": {
+      "type": ["string", "null"]
+    },
+    "sheet": {
+      "type": ["string", "null"]
+    },
+    "source_record_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_file_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "unresolved_mapping",
+        "missing_geography",
+        "missing_time_label",
+        "missing_age_label",
+        "non_numeric_population",
+        "missing_provenance",
+        "missing_source_hash",
+        "ambiguous_value_role",
+        "not_population_count",
+        "missing_prefecture",
+        "missing_municipality",
+        "missing_year",
+        "duplicate_population_key",
+        "non_numeric_value",
+        "missing_source_record_id",
+        "mixed_count_rate_semantics",
+        "invalid_rate_unit",
+        "invalid_count_unit",
+        "outside_scope_prefecture",
+        "scope_unknown_prefecture",
+        "missing_target_prefecture",
+        "missing_municipality_in_target_scope",
+        "duplicate_target_geography_key",
+        "mixed_count_rate_semantics_in_target_scope",
+        "geography_grain_unknown",
+        "municipality_grain_missing_municipality",
+        "prefecture_total_has_municipality",
+        "model_input_candidate_wrong_grain",
+        "context_prefecture_total_wrong_grain",
+        "population_base_duplicate_key",
+        "population_base_missing_source_traceability",
+        "missing_expected_year",
+        "missing_expected_age_group",
+        "missing_prefecture_year_age_combination",
+        "missing_count_for_rate_combination",
+        "missing_rate_for_count_combination",
+        "duplicate_population_base_key",
+        "conflicting_values_for_same_key",
+        "unexpected_geography_grain",
+        "unexpected_value_kind",
+        "population_base_coverage_missing_traceability",
+        "missing_age_group",
+        "unknown_age_group",
+        "ambiguous_age_group_alias",
+        "age_group_value_kind_mismatch",
+        "age_group_missing_source_traceability",
+        "age_group_duplicate_normalized_key",
+        "age_group_conflicting_values"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommended_action": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

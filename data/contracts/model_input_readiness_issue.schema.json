@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/model_input_readiness_issue.schema.json",
+  "title": "ModelInputReadinessIssue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "severity",
+    "issue_code",
+    "message",
+    "study_area_id",
+    "recommended_action"
+  ],
+  "properties": {
+    "issue_id": {"type": "string", "minLength": 1},
+    "severity": {"type": "string", "enum": ["info", "warning", "error"]},
+    "issue_code": {"type": "string", "minLength": 1},
+    "message": {"type": "string", "minLength": 1},
+    "study_area_id": {"type": "string", "minLength": 1},
+    "readiness_key": {"type": ["string", "null"]},
+    "matched_target_prefecture": {"type": ["string", "null"]},
+    "municipality": {"type": ["string", "null"]},
+    "year": {"type": ["string", "null"]},
+    "canonical_age_group_id": {"type": ["string", "null"]},
+    "value_kind": {"type": ["string", "null"]},
+    "geography_grain": {"type": ["string", "null"]},
+    "population_base_role": {"type": ["string", "null"]},
+    "source_record_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "recommended_action": {"type": "string", "minLength": 1}
+  }
+}

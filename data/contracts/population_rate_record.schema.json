@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/population_rate_record.schema.json",
+  "title": "PopulationRateRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "source_record_ids",
+    "rate_value",
+    "source_file_hash",
+    "provenance",
+    "value_kind"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_record_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_file_path": {
+      "type": ["string", "null"]
+    },
+    "source_sheet": {
+      "type": ["string", "null"]
+    },
+    "prefecture": {
+      "type": ["string", "null"]
+    },
+    "municipality": {
+      "type": ["string", "null"]
+    },
+    "age_group": {
+      "type": ["string", "null"]
+    },
+    "year": {
+      "type": ["integer", "string", "null"]
+    },
+    "geography_labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "time_labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "age_labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "rate_value": {
+      "type": "number"
+    },
+    "unit": {
+      "type": ["string", "null"]
+    },
+    "value_kind": {
+      "type": "string",
+      "enum": ["rate"]
+    },
+    "source_file_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "provenance_record.schema.json"
+      }
+    }
+  }
+}

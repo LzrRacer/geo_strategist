@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/candidate_action_record.schema.json",
+  "title": "CandidateActionRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id", "study_area_id", "prefecture", "municipality",
+    "candidate_action", "priority_score", "score_rank_within_action",
+    "score_rank_overall", "selection_basis", "input_score_refs",
+    "feature_refs", "coverage_flags", "issue_refs", "provenance",
+    "run_id", "generated_at"
+  ],
+  "properties": {
+    "candidate_id": { "type": "string", "minLength": 1 },
+    "study_area_id": { "type": "string" },
+    "prefecture": { "type": "string" },
+    "municipality": { "type": "string" },
+    "candidate_action": {
+      "type": "string",
+      "enum": ["build", "reorganize", "consolidate"]
+    },
+    "priority_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "score_rank_within_action": { "type": "integer", "minimum": 1 },
+    "score_rank_overall": { "type": "integer", "minimum": 1 },
+    "selection_basis": { "type": "string" },
+    "input_score_refs": {
+      "type": "object",
+      "description": "Snapshot of score fields used in selection"
+    },
+    "feature_refs": {
+      "type": "object",
+      "description": "Snapshot of feature availability flags used in selection"
+    },
+    "coverage_flags": {
+      "type": "object",
+      "description": "Coverage status flags for each data source"
+    },
+    "issue_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Source artifact references used to derive this candidate"
+    },
+    "run_id": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}

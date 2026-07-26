@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/municipality_land_feature_record.schema.json",
+  "title": "MunicipalityLandFeatureRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["feature_id", "study_area_id", "prefecture", "municipality", "land_price_coverage_status"],
+  "properties": {
+    "feature_id": { "type": "string", "minLength": 1 },
+    "study_area_id": { "type": "string" },
+    "prefecture": { "type": "string" },
+    "municipality": { "type": "string" },
+    "land_price_record_count": { "type": "integer", "minimum": 0 },
+    "land_price_median": { "type": ["number", "null"] },
+    "land_price_mean": { "type": ["number", "null"] },
+    "land_price_min": { "type": ["number", "null"] },
+    "land_price_max": { "type": ["number", "null"] },
+    "land_price_latest_year": { "type": ["integer", "null"] },
+    "land_price_unit": { "type": "string" },
+    "land_price_coverage_status": { "type": "string", "enum": ["available", "unavailable", "partial"] }
+  }
+}

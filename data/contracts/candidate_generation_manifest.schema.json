@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/candidate_generation_manifest.schema.json",
+  "title": "CandidateGenerationManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id", "generated_at", "study_area_id", "config_version",
+    "candidate_counts_by_action", "total_candidates",
+    "total_evidence_bundles", "issue_counts_by_severity", "record_counts"
+  ],
+  "properties": {
+    "run_id": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "study_area_id": { "type": "string" },
+    "config_version": { "type": "string" },
+    "candidate_counts_by_action": {
+      "type": "object",
+      "properties": {
+        "build": { "type": "integer", "minimum": 0 },
+        "reorganize": { "type": "integer", "minimum": 0 },
+        "consolidate": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "total_candidates": { "type": "integer", "minimum": 0 },
+    "total_evidence_bundles": { "type": "integer", "minimum": 0 },
+    "issue_counts_by_severity": {
+      "type": "object",
+      "properties": {
+        "error": { "type": "integer", "minimum": 0 },
+        "warning": { "type": "integer", "minimum": 0 },
+        "info": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "record_counts": {
+      "type": "object"
+    },
+    "municipalities_evaluated": { "type": "integer", "minimum": 0 },
+    "municipalities_with_no_action": { "type": "integer", "minimum": 0 }
+  }
+}

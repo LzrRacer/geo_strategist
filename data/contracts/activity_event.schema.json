@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/activity_event.schema.json",
+  "title": "ActivityEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "run_id", "condition_id", "timestamp", "event_type"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "condition_id": {
+      "type": "string",
+      "pattern": "^C[0-7]$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pattern_label": {
+      "type": "string",
+      "enum": [
+        "Continuous",
+        "Exploratory",
+        "Intermittent",
+        "Early-Concentrated",
+        "Special"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "input_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "output_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geo-strategist.local/contracts/population_geography_key.schema.json",
+  "title": "PopulationGeographyKey",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "key_id",
+    "source_record_ids",
+    "source_file_hash",
+    "value_kind",
+    "provenance"
+  ],
+  "properties": {
+    "key_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_record_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_file_path": {
+      "type": ["string", "null"]
+    },
+    "source_file_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "raw_prefecture_label": {
+      "type": ["string", "null"]
+    },
+    "raw_municipality_label": {
+      "type": ["string", "null"]
+    },
+    "normalized_prefecture_label": {
+      "type": ["string", "null"]
+    },
+    "normalized_municipality_label": {
+      "type": ["string", "null"]
+    },
+    "year": {
+      "type": ["integer", "string", "null"]
+    },
+    "age_group": {
+      "type": ["string", "null"]
+    },
+    "value_kind": {
+      "type": "string",
+      "enum": ["count", "rate"]
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "provenance_record.schema.json"
+      }
+    }
+  }
+}
